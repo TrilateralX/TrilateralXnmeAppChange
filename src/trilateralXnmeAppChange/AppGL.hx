@@ -1,10 +1,10 @@
-package;
+package trilateralXnmeAppChange;
 import nme.app.NmeApplication;
 import nme.app.Window;
 import nme.gl.GL;
 import nme.gl.GLProgram;
-import nme.gl.Buffer;
-import nme.gl.Utils;
+import nme.gl.GLBuffer;
+//import nme.gl.Utils;
 import kitGL.nme.BufferGL;
 import kitGL.nme.ColorPositions;
 import kitGL.nme.HelpGL;
@@ -13,20 +13,26 @@ import trilateral3.Trilateral;
 import trilateral3.drawing.Pen;
 import trilateral3.geom.FlatColorTriangles;
 import trilateral3.nodule.PenNodule;
+import trilateral3.shape.Shaper;
+import trilateral3.drawing.TriangleAbstract;
+import trilateral3.drawing.Color3Abstract;
+import trilateral3.shape.IndexRange;
+import trilateral3.shape.Regular;
+import trilateral3.color.ColorInt;
+import trilateral3.structure.ARGB;
+
 class AppGL extends NmeApplication {
    var valid:Bool;
    var program: GLProgram;
    public var pen: Pen;
+   public var currentTriangle: TriangleAbstract;
+   public var currentColor:    Color3Abstract; // can only use with interleave.
    public var penNodule = new PenNodule();
    public var regular: Regular;
-   public var width:  Int;
-   public var height: Int;
    public var buf:    GLBuffer;
    public
    function new( window: Window ){
       super( window );
-      //window.width    = width_;
-      //window.height   = height_;
       pen             = penNodule.pen;
       currentTriangle = pen.triangleCurrent;
       currentColor    = pen.color3Current;
